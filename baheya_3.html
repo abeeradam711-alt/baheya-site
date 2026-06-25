@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baheya — Luxury Beauty Crafted For You</title>
+<meta name="description" content="Baheya is a premium Saudi Arabian beauty salon offering hair, skin, spa and bridal beauty experiences crafted with elegance." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --ivory:#FBF8F3;
+    --sand:#F2E9DD;
+    --gold:#C9A961;
+    --gold-light:#E4D2A4;
+    --black:#15120F;
+    --taupe:#8B7E6E;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ivory);
+    color:var(--black);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  .font-display{font-family:'Cormorant',serif;}
+  html[dir="rtl"] .font-display{ font-family:'Tajawal','Aref Ruqaa',serif; font-weight:200; }
+  html[dir="rtl"] body{ font-family:'Tajawal',sans-serif; font-weight:300; }
+  html[dir="rtl"] .tracking-luxe{ letter-spacing:0.01em; font-weight:400; }
+  html[dir="rtl"] p, html[dir="rtl"] span, html[dir="rtl"] a, html[dir="rtl"] li{ font-weight:300; }
+  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3{ font-weight:300; }
+  html[dir="rtl"] button, html[dir="rtl"] .btn-gold, html[dir="rtl"] .btn-outline{ font-weight:400; }
+  .tracking-luxe{letter-spacing:0.22em;}
+  .gold-text{color:var(--gold);}
+  .bg-sand{background:var(--sand);}
+  .bg-ivory{background:var(--ivory);}
+
+  .gold-thread{
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
+    width:0%;
+    transition: width 1.6s cubic-bezier(.16,1,.3,1);
+  }
+  .gold-thread.in-view{width:100%;}
+  .gold-thread.short{max-width:120px;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1);}
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+  .reveal-delay-3{transition-delay:.36s;}
+  .reveal-delay-4{transition-delay:.48s;}
+
+  .stagger > * { opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+  .stagger.in-view > *{ opacity:1; transform:translateY(0); }
+  .stagger.in-view > *:nth-child(1){transition-delay:.05s;}
+  .stagger.in-view > *:nth-child(2){transition-delay:.13s;}
+  .stagger.in-view > *:nth-child(3){transition-delay:.21s;}
+  .stagger.in-view > *:nth-child(4){transition-delay:.29s;}
+  .stagger.in-view > *:nth-child(5){transition-delay:.37s;}
+  .stagger.in-view > *:nth-child(6){transition-delay:.45s;}
+  .stagger.in-view > *:nth-child(7){transition-delay:.53s;}
+  .stagger.in-view > *:nth-child(8){transition-delay:.61s;}
+  .stagger.in-view > *:nth-child(9){transition-delay:.69s;}
+  .stagger.in-view > *:nth-child(10){transition-delay:.77s;}
+  .stagger.in-view > *:nth-child(11){transition-delay:.85s;}
+  .stagger.in-view > *:nth-child(12){transition-delay:.93s;}
+
+  .lux-card{
+    background:linear-gradient(160deg, #FFFFFF, var(--sand) 120%);
+    border:1px solid rgba(201,169,97,0.18);
+    border-radius:1.4rem;
+    box-shadow:0 1px 2px rgba(21,18,15,0.04), 0 18px 40px -22px rgba(21,18,15,0.18);
+    transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1), border-color .55s;
+  }
+  .lux-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 1px 2px rgba(21,18,15,0.06), 0 30px 60px -24px rgba(201,169,97,0.45);
+    border-color:rgba(201,169,97,0.55);
+  }
+
+  .glass{
+    background:rgba(255,255,255,0.55);
+    backdrop-filter:blur(18px) saturate(160%);
+    border:1px solid rgba(255,255,255,0.6);
+  }
+
+  .btn-gold{
+    background:linear-gradient(120deg, var(--gold), var(--gold-light));
+    color:var(--black);
+    transition:transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s;
+  }
+  .btn-gold:hover{ transform:translateY(-2px); box-shadow:0 16px 30px -12px rgba(201,169,97,0.6); }
+
+  .btn-outline{
+    border:1px solid rgba(21,18,15,0.35);
+    transition:all .4s cubic-bezier(.16,1,.3,1);
+  }
+  .btn-outline:hover{ border-color:var(--gold); background:rgba(201,169,97,0.08); }
+
+  #nav{ transition:background .5s, box-shadow .5s, padding .5s; }
+  #nav.scrolled{
+    background:rgba(251,248,243,0.85);
+    backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 rgba(21,18,15,0.06);
+  }
+
+  .hero-bg{
+    background:
+      radial-gradient(circle at 18% 18%, rgba(228,210,164,0.5), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(201,169,97,0.35), transparent 50%),
+      linear-gradient(160deg, #FBF8F3 0%, #F2E9DD 60%, #ECE0CB 100%);
+  }
+  .hero-portrait{ background:linear-gradient(150deg, #ECE2CE, #D9C7A0); }
+
+  .marquee-track{
+    display:flex; gap:3rem; white-space:nowrap;
+    animation:marquee 32s linear infinite;
+  }
+  html[dir="rtl"] .marquee-track{ animation:marqueeRtl 32s linear infinite; }
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @keyframes marqueeRtl{ from{transform:translateX(0);} to{transform:translateX(50%);} }
+
+  .floaty{ animation:floaty 7s ease-in-out infinite; }
+  @keyframes floaty{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+  .gal-item{ overflow:hidden; border-radius:1.2rem; position:relative; }
+  .gal-item img, .gal-item .ph{ transition:transform .9s cubic-bezier(.16,1,.3,1); }
+  .gal-item:hover img, .gal-item:hover .ph{ transform:scale(1.08); }
+  .gal-overlay{
+    position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(21,18,15,0.65));
+    opacity:0; transition:opacity .5s;
+    display:flex; align-items:flex-end; padding:1.2rem;
+  }
+  .gal-item:hover .gal-overlay{opacity:1;}
+
+  .ph{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(150deg,#ECE2CE,#D6C29B);
+    color:rgba(21,18,15,0.35);
+    font-family:'Cormorant',serif; letter-spacing:.15em; font-size:.85rem;
+    text-align:center; padding:0 .5rem;
+  }
+  html[dir="rtl"] .ph{ font-family:'Tajawal',sans-serif; letter-spacing:0; }
+
+  .acc-panel{ max-height:0; overflow:hidden; transition:max-height .5s cubic-bezier(.16,1,.3,1); }
+  .acc-item.open .acc-panel{ max-height:300px; }
+  .acc-item.open .acc-icon{ transform:rotate(45deg); }
+  .acc-icon{ transition:transform .4s; }
+
+  .t-slide{ display:none; }
+  .t-slide.active{ display:block; animation:fadeIn .6s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  ::selection{ background:var(--gold); color:#fff; }
+
+  #loader{ position:fixed; inset:0; background:var(--ivory); z-index:9999; display:flex; align-items:center; justify-content:center; transition:opacity .8s ease, visibility .8s; }
+  #loader.hide{ opacity:0; visibility:hidden; }
+  .loader-mark{ font-family:'Cormorant',serif; font-size:2.4rem; letter-spacing:.3em; color:var(--black); opacity:0; animation:loaderIn 1.4s ease forwards; }
+  @keyframes loaderIn{ 0%{opacity:0; letter-spacing:.6em;} 60%{opacity:1;} 100%{opacity:1; letter-spacing:.3em;} }
+
+  .lang-btn{
+    border:1px solid rgba(21,18,15,0.25);
+    border-radius:999px;
+    font-size:11px;
+    letter-spacing:.12em;
+    padding:.4rem .9rem;
+    transition:all .3s;
+  }
+  .lang-btn:hover{ border-color:var(--gold); background:rgba(201,169,97,0.08); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body class="bg-ivory">
+
+<div id="loader"><span class="loader-mark">BAHEYA</span></div>
+
+<!-- NAV -->
+<nav id="nav" class="fixed top-0 inset-x-0 z-50 px-6 md:px-12 py-5 flex items-center justify-between">
+  <a href="#" class="font-display text-2xl tracking-luxe" data-i18n="brand">BAHEYA</a>
+  <div class="hidden lg:flex items-center gap-9 text-[13px] tracking-luxe uppercase text-black/70">
+    <a href="#services" class="hover:text-[var(--gold)] transition" data-i18n="nav_services">Services</a>
+    <a href="#why" class="hover:text-[var(--gold)] transition" data-i18n="nav_about">About</a>
+    <a href="#gallery" class="hover:text-[var(--gold)] transition" data-i18n="nav_gallery">Gallery</a>
+    <a href="#experts" class="hover:text-[var(--gold)] transition" data-i18n="nav_experts">Experts</a>
+    <a href="#offers" class="hover:text-[var(--gold)] transition" data-i18n="nav_offers">Offers</a>
+    <a href="#contact" class="hover:text-[var(--gold)] transition" data-i18n="nav_contact">Contact</a>
+  </div>
+  <div class="flex items-center gap-3">
+    <button id="langBtn" class="lang-btn uppercase" data-i18n="lang_toggle">العربية</button>
+    <a href="#book" class="hidden md:inline-flex btn-gold px-6 py-2.5 rounded-full text-[12px] tracking-luxe uppercase" data-i18n="nav_book">Book Appointment</a>
+    <button id="menuBtn" class="lg:hidden w-9 h-9 flex flex-col gap-[5px] items-end justify-center">
+      <span class="block w-7 h-px bg-black"></span>
+      <span class="block w-5 h-px bg-black"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobileMenu" class="fixed inset-0 bg-ivory z-40 hidden flex-col items-center justify-center gap-8 font-display text-3xl">
+  <a href="#services" class="mob-link" data-i18n="nav_services">Services</a>
+  <a href="#why" class="mob-link" data-i18n="nav_about">About</a>
+  <a href="#gallery" class="mob-link" data-i18n="nav_gallery">Gallery</a>
+  <a href="#experts" class="mob-link" data-i18n="nav_experts">Experts</a>
+  <a href="#offers" class="mob-link" data-i18n="nav_offers">Offers</a>
+  <a href="#contact" class="mob-link" data-i18n="nav_contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<header class="hero-bg relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+  <div class="absolute -right-24 top-1/4 w-[420px] h-[420px] rounded-full hero-portrait blur-[2px] opacity-70 floaty"></div>
+  <div class="max-w-7xl mx-auto px-6 md:px-12 w-full grid lg:grid-cols-2 gap-14 items-center relative z-10">
+    <div>
+      <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-6" data-i18n="hero_eyebrow">Riyadh · Est. Beauty House</p>
+      <h1 class="reveal reveal-delay-1 font-display font-light text-[3rem] sm:text-[3.6rem] lg:text-[4.4rem] leading-[1.05] mb-3" data-i18n="hero_title">
+        Luxury Beauty<br/>Crafted For <em class="italic gold-text">You.</em>
+      </h1>
+      <div class="gold-thread short mb-7" data-thread></div>
+      <p class="reveal reveal-delay-2 text-black/65 text-lg max-w-md leading-relaxed mb-10 font-light" data-i18n="hero_sub">
+        Experience timeless beauty with world-class salon services designed to make every woman feel confident, elegant and radiant.
+      </p>
+      <div class="reveal reveal-delay-3 flex flex-wrap gap-4 mb-16">
+        <a href="#book" class="btn-gold px-8 py-4 rounded-full text-[12px] tracking-luxe uppercase" data-i18n="btn_book">Book Appointment</a>
+        <a href="#services" class="btn-outline px-8 py-4 rounded-full text-[12px] tracking-luxe uppercase" data-i18n="btn_explore">Explore Services</a>
+      </div>
+      <div class="reveal reveal-delay-4 grid grid-cols-3 gap-6 max-w-lg">
+        <div>
+          <p class="font-display text-3xl">20+</p>
+          <p class="text-[11px] tracking-luxe uppercase text-black/50 mt-1" data-i18n="stat_years">Years Experience</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl">100K+</p>
+          <p class="text-[11px] tracking-luxe uppercase text-black/50 mt-1" data-i18n="stat_clients">Happy Clients</p>
+        </div>
+        <div>
+          <p class="font-display text-3xl" data-i18n="stat_award_num">Award</p>
+          <p class="text-[11px] tracking-luxe uppercase text-black/50 mt-1" data-i18n="stat_award">Beauty Experts</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2 relative">
+      <div class="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
+        <div class="ph w-full h-full text-base" data-i18n="hero_img_label">Cinematic Hero Portrait</div>
+      </div>
+      <div class="glass absolute -bottom-8 -left-8 rtl-flip rounded-2xl px-6 py-5 hidden sm:block">
+        <p class="font-display text-xl" data-i18n="hero_quote">"A House of Quiet Luxury"</p>
+        <p class="text-[11px] tracking-luxe uppercase text-black/50 mt-1" data-i18n="hero_quote_src">Vogue Arabia</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Logo marquee -->
+<div class="border-y border-black/10 py-6 overflow-hidden bg-sand/40">
+  <div class="marquee-track text-[12px] tracking-luxe uppercase text-black/40" id="marqueeTrack"></div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="py-28 md:py-36 px-6 md:px-12 max-w-7xl mx-auto">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="services_eyebrow">Our Craft</p>
+    <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="services_title">Luxury Services</h2>
+    <div class="gold-thread short mx-auto mt-6" data-thread></div>
+  </div>
+  <div class="stagger grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="servicesGrid"></div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section id="why" class="py-28 md:py-36 px-6 md:px-12 bg-sand/50">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <div class="aspect-[4/5] rounded-[2rem] overflow-hidden">
+        <div class="ph w-full h-full" data-i18n="why_img_label">VIP Suite Interior</div>
+      </div>
+    </div>
+    <div>
+      <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="why_eyebrow">The Baheya Standard</p>
+      <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light mb-6" data-i18n="why_title">Why Choose Baheya</h2>
+      <p class="reveal reveal-delay-1 text-black/60 leading-relaxed mb-10 max-w-md font-light" data-i18n="why_sub">Every detail, from the scent in the air to the hands that care for you, is considered. This is beauty as ritual.</p>
+      <div class="stagger grid sm:grid-cols-2 gap-x-8 gap-y-6" id="whyGrid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER GALLERY -->
+<section id="gallery" class="py-28 md:py-36 px-6 md:px-12 max-w-7xl mx-auto">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="gallery_eyebrow">Transformations</p>
+    <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="gallery_title">Before &amp; After</h2>
+    <div class="gold-thread short mx-auto mt-6" data-thread></div>
+  </div>
+  <div class="stagger grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5" id="galleryGrid"></div>
+</section>
+
+<!-- EXPERTS -->
+<section id="experts" class="py-28 md:py-36 px-6 md:px-12 bg-sand/50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="experts_eyebrow">The Artists</p>
+      <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="experts_title">Meet Our Experts</h2>
+      <div class="gold-thread short mx-auto mt-6" data-thread></div>
+    </div>
+    <div class="stagger grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="expertsGrid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-28 md:py-36 px-6 md:px-12 max-w-4xl mx-auto text-center">
+  <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="testi_eyebrow">Loved By Many</p>
+  <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light mb-14" data-i18n="testi_title">Client Stories</h2>
+  <div class="glass rounded-3xl p-10 md:p-14 relative" id="testiBox">
+    <div id="testiSlides"></div>
+    <div class="flex justify-center gap-3 mt-8" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section id="offers" class="py-28 md:py-36 px-6 md:px-12 bg-sand/50">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="offers_eyebrow">Membership &amp; Gifts</p>
+      <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="offers_title">Exclusive Offers</h2>
+      <div class="gold-thread short mx-auto mt-6" data-thread></div>
+    </div>
+    <div class="stagger grid md:grid-cols-3 gap-6" id="offersGrid"></div>
+  </div>
+</section>
+
+<!-- APP -->
+<section class="py-28 md:py-36 px-6 md:px-12 max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+  <div class="reveal order-2 lg:order-1">
+    <p class="text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="app_eyebrow">In Your Pocket</p>
+    <h2 class="font-display text-4xl md:text-5xl font-light mb-8" data-i18n="app_title">The Baheya App</h2>
+    <ul class="space-y-5 mb-10 font-light text-black/70" id="appList"></ul>
+    <div class="flex gap-4">
+      <a href="#" class="btn-outline rounded-xl px-5 py-3 text-[12px] tracking-luxe uppercase" data-i18n="app_store">App Store</a>
+      <a href="#" class="btn-outline rounded-xl px-5 py-3 text-[12px] tracking-luxe uppercase" data-i18n="google_play">Google Play</a>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-1 order-1 lg:order-2 flex justify-center">
+    <div class="w-[260px] h-[540px] rounded-[2.5rem] border-[10px] border-black bg-sand shadow-2xl floaty flex items-center justify-center">
+      <span class="font-display text-black/30 tracking-luxe text-sm" data-i18n="app_preview">App Preview</span>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section class="py-28 md:py-36 px-6 md:px-12 max-w-7xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4">@baheya.beauty</p>
+    <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="insta_title">Follow Our World</h2>
+  </div>
+  <div class="stagger grid grid-cols-3 md:grid-cols-6 gap-3" id="instaGrid"></div>
+</section>
+
+<!-- FAQ -->
+<section class="py-28 md:py-36 px-6 md:px-12 max-w-3xl mx-auto">
+  <div class="text-center mb-14">
+    <p class="reveal text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="faq_eyebrow">Good To Know</p>
+    <h2 class="reveal reveal-delay-1 font-display text-4xl md:text-5xl font-light" data-i18n="faq_title">Frequently Asked</h2>
+  </div>
+  <div id="faqList" class="reveal space-y-3"></div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-28 md:py-36 px-6 md:px-12 bg-sand/50">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12">
+    <div class="reveal">
+      <p class="text-[12px] tracking-luxe uppercase text-[var(--gold)] mb-4" data-i18n="contact_eyebrow">Visit Us</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light mb-8" data-i18n="contact_title">Contact</h2>
+      <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-8">
+        <div class="ph w-full h-full" data-i18n="contact_map_label">Interactive Map — Riyadh, KSA</div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-6 text-sm font-light text-black/70">
+        <div><p class="tracking-luxe uppercase text-[11px] text-black/40 mb-1" data-i18n="hours_label">Hours</p><p data-i18n="hours_value">Sat–Thu 10am – 10pm<br/>Fri 2pm – 10pm</p></div>
+        <div><p class="tracking-luxe uppercase text-[11px] text-black/40 mb-1" data-i18n="phone_label">Phone / WhatsApp</p><p>+966 11 234 5678</p></div>
+        <div><p class="tracking-luxe uppercase text-[11px] text-black/40 mb-1" data-i18n="email_label">Email</p><p>hello@baheya.sa</p></div>
+        <div><p class="tracking-luxe uppercase text-[11px] text-black/40 mb-1" data-i18n="location_label">Location</p><p data-i18n="location_value">Tahlia Street, Riyadh</p></div>
+      </div>
+    </div>
+    <form class="reveal reveal-delay-1 lux-card p-8 md:p-10 space-y-5" onsubmit="event.preventDefault(); this.querySelector('.confirm').classList.remove('hidden');">
+      <h3 class="font-display text-2xl mb-2" data-i18n="form_title">Send a Message</h3>
+      <input required data-i18n-ph="ph_name" placeholder="Full Name" class="w-full bg-transparent border-b border-black/15 py-3 outline-none focus:border-[var(--gold)] transition" />
+      <input required type="email" data-i18n-ph="ph_email" placeholder="Email" class="w-full bg-transparent border-b border-black/15 py-3 outline-none focus:border-[var(--gold)] transition" />
+      <input data-i18n-ph="ph_phone" placeholder="Phone" class="w-full bg-transparent border-b border-black/15 py-3 outline-none focus:border-[var(--gold)] transition" />
+      <textarea data-i18n-ph="ph_message" placeholder="Message" rows="4" class="w-full bg-transparent border-b border-black/15 py-3 outline-none focus:border-[var(--gold)] transition"></textarea>
+      <button class="btn-gold w-full py-4 rounded-full text-[12px] tracking-luxe uppercase" data-i18n="form_submit">Send Message</button>
+      <p class="confirm hidden text-center text-[12px] tracking-luxe uppercase text-[var(--gold)]" data-i18n="form_confirm">Message sent. We'll be in touch.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-black text-ivory pt-20 pb-10 px-6 md:px-12" id="book">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-12 pb-14 border-b border-white/10">
+      <div>
+        <p class="font-display text-2xl tracking-luxe mb-4" data-i18n="brand">BAHEYA</p>
+        <p class="text-white/50 text-sm font-light leading-relaxed" data-i18n="footer_about">A house of quiet luxury, dedicated to timeless beauty rituals in the heart of Riyadh.</p>
+      </div>
+      <div>
+        <p class="tracking-luxe uppercase text-[11px] text-white/40 mb-4" data-i18n="footer_explore">Explore</p>
+        <div class="flex flex-col gap-2 text-sm text-white/70">
+          <a href="#services" class="hover:text-[var(--gold)] transition" data-i18n="nav_services">Services</a>
+          <a href="#gallery" class="hover:text-[var(--gold)] transition" data-i18n="nav_gallery">Gallery</a>
+          <a href="#experts" class="hover:text-[var(--gold)] transition" data-i18n="nav_experts">Experts</a>
+          <a href="#offers" class="hover:text-[var(--gold)] transition" data-i18n="nav_offers">Offers</a>
+        </div>
+      </div>
+      <div>
+        <p class="tracking-luxe uppercase text-[11px] text-white/40 mb-4" data-i18n="footer_follow">Follow</p>
+        <div class="flex gap-4 text-sm text-white/70">
+          <a href="#" class="hover:text-[var(--gold)] transition">Instagram</a>
+          <a href="#" class="hover:text-[var(--gold)] transition">TikTok</a>
+          <a href="#" class="hover:text-[var(--gold)] transition">WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <p class="tracking-luxe uppercase text-[11px] text-white/40 mb-4" data-i18n="footer_newsletter">Newsletter</p>
+        <form class="flex gap-2" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('span').classList.remove('hidden');">
+          <input required type="email" data-i18n-ph="ph_email_short" placeholder="Your email" class="bg-white/5 border border-white/15 rounded-full px-4 py-2 text-sm w-full outline-none focus:border-[var(--gold)]" />
+          <button class="btn-gold px-5 py-2 rounded-full text-[11px] tracking-luxe uppercase whitespace-nowrap" data-i18n="join">Join</button>
+        </form>
+        <span class="hidden text-[11px] text-[var(--gold)] mt-2 block" data-i18n="subscribed">Subscribed — welcome to Baheya.</span>
+      </div>
+    </div>
+    <p class="text-white/30 text-xs pt-8 text-center tracking-wide" data-i18n="copyright">© 2026 Baheya Beauty House. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// ---------- i18n dictionary ----------
+const i18n = {
+  brand:["BAHEYA","بهية"],
+  nav_services:["Services","الخدمات"],
+  nav_about:["About","من نحن"],
+  nav_gallery:["Gallery","المعرض"],
+  nav_experts:["Experts","الخبيرات"],
+  nav_offers:["Offers","العروض"],
+  nav_contact:["Contact","تواصل"],
+  nav_book:["Book Appointment","حجز موعد"],
+  lang_toggle:["العربية","English"],
+  hero_eyebrow:["Riyadh · Est. Beauty House","الرياض · بيت جمال أصيل"],
+  hero_title:['Luxury Beauty<br/>Crafted For <em class="italic gold-text">You.</em>','جمال فاخر<br/>يُصنع من <em class="italic gold-text">أجلك.</em>'],
+  hero_sub:["Experience timeless beauty with world-class salon services designed to make every woman feel confident, elegant and radiant.","عيشي تجربة جمال خالدة مع خدمات صالون عالمية المستوى، صُممت لتجعل كل امرأة تشعر بالثقة والأنوثة والإشراق."],
+  btn_book:["Book Appointment","حجز موعد"],
+  btn_explore:["Explore Services","استكشفي الخدمات"],
+  stat_years:["Years Experience","سنوات من الخبرة"],
+  stat_clients:["Happy Clients","عميلة سعيدة"],
+  stat_award_num:["Award","جوائز"],
+  stat_award:["Beauty Experts","خبيرات تجميل"],
+  hero_img_label:["Cinematic Hero Portrait","صورة رئيسية سينمائية"],
+  hero_quote:['"A House of Quiet Luxury"','"بيت من الفخامة الهادئة"'],
+  hero_quote_src:["Vogue Arabia","فوغ أرابيا"],
+  services_eyebrow:["Our Craft","حِرفتنا"],
+  services_title:["Luxury Services","خدمات فاخرة"],
+  why_eyebrow:["The Baheya Standard","معيار بهية"],
+  why_title:["Why Choose Baheya","لماذا بهية"],
+  why_sub:["Every detail, from the scent in the air to the hands that care for you, is considered. This is beauty as ritual.","كل تفصيل، من العبير في الهواء إلى الأيدي التي تعنى بك، مدروس بعناية. هنا الجمال طقس وليس مجرد خدمة."],
+  why_img_label:["VIP Suite Interior","جناح كبار الزوار"],
+  gallery_eyebrow:["Transformations","التحولات"],
+  gallery_title:["Before & After","قبل وبعد"],
+  experts_eyebrow:["The Artists","الفنانات"],
+  experts_title:["Meet Our Experts","تعرفي على خبيراتنا"],
+  testi_eyebrow:["Loved By Many","محبوبة من الكثيرات"],
+  testi_title:["Client Stories","قصص عميلاتنا"],
+  offers_eyebrow:["Membership & Gifts","العضويات والهدايا"],
+  offers_title:["Exclusive Offers","عروض حصرية"],
+  app_eyebrow:["In Your Pocket","بين يديك"],
+  app_title:["The Baheya App","تطبيق بهية"],
+  app_store:["App Store","آب ستور"],
+  google_play:["Google Play","جوجل بلاي"],
+  app_preview:["App Preview","معاينة التطبيق"],
+  insta_title:["Follow Our World","تابعي عالمنا"],
+  faq_eyebrow:["Good To Know","معلومات مفيدة"],
+  faq_title:["Frequently Asked","الأسئلة الشائعة"],
+  contact_eyebrow:["Visit Us","زورونا"],
+  contact_title:["Contact","تواصل معنا"],
+  contact_map_label:["Interactive Map — Riyadh, KSA","خريطة تفاعلية — الرياض، السعودية"],
+  hours_label:["Hours","ساعات العمل"],
+  hours_value:["Sat–Thu 10am – 10pm<br/>Fri 2pm – 10pm","السبت – الخميس ١٠ص – ١٠م<br/>الجمعة ٢م – ١٠م"],
+  phone_label:["Phone / WhatsApp","الهاتف / واتساب"],
+  email_label:["Email","البريد الإلكتروني"],
+  location_label:["Location","الموقع"],
+  location_value:["Tahlia Street, Riyadh","شارع التحلية، الرياض"],
+  form_title:["Send a Message","أرسلي رسالة"],
+  form_submit:["Send Message","إرسال الرسالة"],
+  form_confirm:["Message sent. We'll be in touch.","تم إرسال رسالتك. سنتواصل معك قريباً."],
+  ph_name:["Full Name","الاسم الكامل"],
+  ph_email:["Email","البريد الإلكتروني"],
+  ph_phone:["Phone","رقم الهاتف"],
+  ph_message:["Message","رسالتك"],
+  ph_email_short:["Your email","بريدك الإلكتروني"],
+  join:["Join","اشتركي"],
+  subscribed:["Subscribed — welcome to Baheya.","تم الاشتراك — مرحباً بك في بهية."],
+  footer_about:["A house of quiet luxury, dedicated to timeless beauty rituals in the heart of Riyadh.","بيت من الفخامة الهادئة، مخصص لطقوس الجمال الخالدة في قلب الرياض."],
+  footer_explore:["Explore","تصفحي"],
+  footer_follow:["Follow","تابعينا"],
+  footer_newsletter:["Newsletter","النشرة البريدية"],
+  copyright:["© 2026 Baheya Beauty House. All rights reserved.","© 2026 بيت بهية للجمال. جميع الحقوق محفوظة."],
+};
+
+let currentLang = 'en';
+
+function applyLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(i18n[key]) el.innerHTML = i18n[key][lang==='ar'?1:0];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(i18n[key]) el.placeholder = i18n[key][lang==='ar'?1:0];
+  });
+  renderDynamic(lang);
+}
+
+document.getElementById('langBtn').addEventListener('click', ()=>{
+  applyLang(currentLang === 'en' ? 'ar' : 'en');
+});
+
+// ---------- Dynamic content (bilingual data) ----------
+const servicesData = [
+  ["Hair Styling","تصفيف الشعر","Editorial cuts and blowouts tailored to your features.","قصات وتصفيفات عصرية تُناسب ملامحك."],
+  ["Hair Coloring","تلوين الشعر","Balayage, gloss and dimensional color by master colorists.","بالياج وتلوين متدرج بيد خبيرات الألوان."],
+  ["Hair Treatments","علاجات الشعر","Keratin, scalp therapy and deep restoration rituals.","كيراتين وعلاج فروة الرأس وترميم عميق للشعر."],
+  ["Nails","العناية بالأظافر","Precision manicures and luxury nail artistry.","مناكير دقيق وفن أظافر فاخر."],
+  ["Spa & Massage","سبا ومساج","Signature massages in private, candle-lit suites.","مساج مميز في أجنحة خاصة بأضواء الشموع."],
+  ["Facial Treatments","علاجات الوجه","Clinical facials using international skincare lines.","تنظيف بشرة طبي بمنتجات عالمية."],
+  ["Skin Care","العناية بالبشرة","Personalized regimens for lasting radiance.","برامج عناية مخصصة لإشراقة دائمة."],
+  ["Eyelashes","الرموش","Classic and volume lash extensions, lash lifts.","تركيب رموش كلاسيك وفوليوم ولفت الرموش."],
+  ["Eyebrows","الحواجب","Microblading, lamination and precision shaping.","تحديد ورسم الحواجب بدقة عالية."],
+  ["Waxing","إزالة الشعر بالشمع","Gentle, expert hair removal in total privacy.","إزالة شعر لطيفة وخاصة بخصوصية كاملة."],
+  ["Permanent Makeup","المكياج الدائم","Lip blush, brows and fine-line tattooing.","تحديد الشفاه والحواجب بتقنية دقيقة."],
+  ["Bridal Beauty","جمال العروس","Full bridal beauty journeys, trial to wedding day.","رحلة جمال كاملة للعروس من التجربة حتى يوم الزفاف."],
+];
+
+const whysData = [
+  ["Luxury Experience","تجربة فاخرة"],["Certified Beauty Experts","خبيرات معتمدات"],
+  ["Premium International Products","منتجات عالمية فاخرة"],["Private VIP Rooms","غرف خاصة لكبار الزوار"],
+  ["Latest Beauty Technology","أحدث تقنيات التجميل"],["Personalized Care","عناية مخصصة"],
+  ["Award Winning Service","خدمة حائزة على جوائز"],["Elegant Atmosphere","أجواء أنيقة"],
+];
+
+const galleryLabels = lang=> Array.from({length:9}, (_,i)=> lang==='ar' ? `قبل / بعد ${i+1}` : `Before / After ${i+1}`);
+const galleryOverlay = ["View Transformation","عرض التحول"];
+
+const expertsData = [
+  ["Lina Al-Faisal","لينا الفيصل","Senior Colorist","خبيرة ألوان أولى","14 Years","١٤ سنة"],
+  ["Reem Al-Sharif","ريم الشريف","Skincare Director","مديرة العناية بالبشرة","11 Years","١١ سنة"],
+  ["Noor Al-Hassan","نور الحسن","Bridal Specialist","متخصصة عرائس","9 Years","٩ سنوات"],
+  ["Sara Al-Otaibi","سارة العتيبي","Lead Stylist","كبيرة المصففات","16 Years","١٦ سنة"],
+];
+const expWord = ["Experience","خبرة"];
+
+const testimonialsData = [
+  ["Walking into Baheya feels like stepping into another world — calm, elegant, perfectly considered.","دخول بهية يشعرك بأنك في عالم آخر — هادئ، أنيق، ومدروس بعناية فائقة.","Dana M.","دانة م."],
+  ["The colorist understood exactly what I wanted before I finished explaining it.","خبيرة الألوان فهمت ما أريده تماماً قبل أن أنتهي من الشرح.","Haya S.","هيا س."],
+  ["My bridal experience was flawless from the first trial to the wedding morning.","تجربتي كعروس كانت مثالية من أول تجربة حتى صباح الزفاف.","Lama K.","لمى ك."],
+];
+
+const offersData = [
+  ["Signature Membership","عضوية بهية المميزة","SAR 990/mo","٩٩٠ ريال / شهرياً","Unlimited blowouts, priority booking, members-only events.","تصفيف غير محدود، حجز بالأولوية، فعاليات خاصة بالأعضاء."],
+  ["Bridal Package","باقة العروس","From SAR 4,500","تبدأ من ٤٥٠٠ ريال","Trial, wedding-day glam and touch-up kit included.","تجربة، تجهيز يوم الزفاف، وحقيبة تجميل للتعديل."],
+  ["Gift Card","بطاقة هدية","From SAR 200","تبدأ من ٢٠٠ ريال","Share the Baheya experience with someone you love.","شاركي تجربة بهية مع من تحبين."],
+];
+const inquire = ["Inquire","استفسري"];
+const mostLoved = ["Most Loved","الأكثر طلباً"];
+
+const appListData = [
+  ["Book appointments anytime.","حجز المواعيد في أي وقت."],
+  ["Choose your favorite specialist.","اختيار خبيرتك المفضلة."],
+  ["Receive exclusive offers.","الحصول على عروض حصرية."],
+  ["Manage your bookings easily.","إدارة حجوزاتك بسهولة."],
+];
+
+const faqsData = [
+  ["Do I need to book an appointment in advance?","هل أحتاج لحجز موعد مسبقاً؟",
+   "We recommend booking 3–5 days ahead, especially for color and bridal services, to secure your preferred specialist and time.","نوصي بالحجز قبل ٣–٥ أيام، خاصة لخدمات التلوين والعروس، لضمان حجز الخبيرة والوقت المفضلين."],
+  ["Are private VIP rooms available for all services?","هل غرف كبار الزوار متاحة لجميع الخدمات؟",
+   "Yes, VIP suites can be requested for any treatment and are complimentary for members.","نعم، يمكن طلب الأجنحة الخاصة لأي خدمة، وهي مجانية للأعضاء."],
+  ["What beauty brands do you use?","ما هي العلامات التجارية التي تستخدمونها؟",
+   "We work exclusively with premium international skincare and haircare houses, selected for results and safety.","نعمل فقط مع علامات عالمية فاخرة للعناية بالبشرة والشعر، مختارة بعناية لجودتها وسلامتها."],
+  ["Can I customize a bridal package?","هل يمكنني تخصيص باقة العروس؟",
+   "Absolutely. Our bridal specialists design a journey around your wedding timeline and preferences.","بكل تأكيد. تصمم خبيراتنا رحلة كاملة حسب موعد زفافك وتفضيلاتك."],
+  ["What is your cancellation policy?","ما هي سياسة الإلغاء؟",
+   "We kindly ask for 24 hours' notice to avoid a cancellation fee.","نرجو إشعارنا قبل ٢٤ ساعة لتجنب رسوم الإلغاء."],
+];
+
+const marqueeData = [
+  ["As Featured In","كما ظهر في"],["Vogue Arabia","فوغ أرابيا"],["Harper's Bazaar","هاربرز بازار"],
+  ["Elle KSA","إيل السعودية"],["Grazia","غراتسيا"],["L'Officiel","لوفيسيال"],
+];
+
+let testiIndex = 0;
+
+function renderDynamic(lang){
+  const li = lang==='ar'?1:0;
+
+  // Services
+  const servicesGrid = document.getElementById('servicesGrid');
+  servicesGrid.innerHTML = servicesData.map(s=>`
+    <div class="lux-card p-8">
+      <div class="w-12 h-12 rounded-full bg-[var(--gold)]/15 flex items-center justify-center mb-6">
+        <span class="gold-text font-display text-lg">✦</span>
+      </div>
+      <h3 class="font-display text-xl mb-2">${s[li]}</h3>
+      <p class="text-black/55 text-sm font-light leading-relaxed">${s[li+2]}</p>
+    </div>`).join('');
+
+  // Why
+  document.getElementById('whyGrid').innerHTML = whysData.map(w=>`
+    <div class="flex items-start gap-3">
+      <span class="gold-text font-display text-lg mt-[-2px]">✦</span>
+      <p class="text-black/75 font-light">${w[li]}</p>
+    </div>`).join('');
+
+  // Gallery
+  const labels = galleryLabels(lang);
+  document.getElementById('galleryGrid').innerHTML = labels.map((lbl,i)=>`
+    <div class="gal-item aspect-square ${ (i+1)%5===0 ? 'md:row-span-2 md:aspect-auto' : ''}">
+      <div class="ph h-full">${lbl}</div>
+      <div class="gal-overlay"><p class="text-white text-sm tracking-luxe uppercase">${galleryOverlay[li]}</p></div>
+    </div>`).join('');
+
+  // Experts
+  document.getElementById('expertsGrid').innerHTML = expertsData.map(e=>`
+    <div class="lux-card overflow-hidden">
+      <div class="aspect-[3/4]"><div class="ph h-full">${e[li]}</div></div>
+      <div class="p-5">
+        <h3 class="font-display text-lg">${e[li]}</h3>
+        <p class="text-[var(--gold)] text-xs tracking-luxe uppercase mt-1">${e[li+2]}</p>
+        <p class="text-black/45 text-xs mt-1">${e[li+4]} ${expWord[li]}</p>
+        <div class="flex gap-3 mt-3 text-black/40 text-xs">
+          <a href="#" class="hover:text-[var(--gold)]">IG</a><a href="#" class="hover:text-[var(--gold)]">TT</a>
+        </div>
+      </div>
+    </div>`).join('');
+
+  // Testimonials
+  document.getElementById('testiSlides').innerHTML = testimonialsData.map((t,i)=>`
+    <div class="t-slide ${i===testiIndex?'active':''}">
+      <p class="gold-text text-lg mb-4">★★★★★</p>
+      <p class="font-display text-2xl md:text-3xl font-light leading-snug mb-6">"${t[li]}"</p>
+      <p class="tracking-luxe uppercase text-xs text-black/50">${t[li+2]}</p>
+    </div>`).join('');
+  document.getElementById('testiDots').innerHTML = testimonialsData.map((_,i)=>`
+    <button class="w-2 h-2 rounded-full ${i===testiIndex?'bg-[var(--gold)]':'bg-black/15'}" data-dot="${i}"></button>`).join('');
+
+  // Offers
+  document.getElementById('offersGrid').innerHTML = offersData.map((o,i)=>`
+    <div class="lux-card p-9 flex flex-col ${i===1?'ring-1 ring-[var(--gold)]':''}">
+      ${i===1?`<span class="text-[10px] tracking-luxe uppercase gold-text mb-3">${mostLoved[li]}</span>`:''}
+      <h3 class="font-display text-2xl mb-1">${o[li]}</h3>
+      <p class="font-display text-xl gold-text mb-4">${o[li+2]}</p>
+      <p class="text-black/55 text-sm font-light leading-relaxed mb-8 flex-1">${o[li+4]}</p>
+      <a href="#contact" class="btn-outline text-center rounded-full py-3 text-[12px] tracking-luxe uppercase">${inquire[li]}</a>
+    </div>`).join('');
+
+  // App list
+  document.getElementById('appList').innerHTML = appListData.map(a=>`
+    <li class="flex gap-4 items-start"><span class="gold-text font-display text-xl">—</span> ${a[li]}</li>`).join('');
+
+  // Instagram
+  document.getElementById('instaGrid').innerHTML = Array.from({length:12},(_,i)=>`
+    <div class="gal-item aspect-square"><div class="ph h-full text-[11px]">#${i+1}</div></div>`).join('');
+
+  // FAQ
+  document.getElementById('faqList').innerHTML = faqsData.map(f=>`
+    <div class="acc-item border border-black/10 rounded-2xl overflow-hidden bg-white/60">
+      <button class="acc-trigger w-full flex items-center justify-between gap-4 px-6 py-5 text-left">
+        <span class="font-display text-lg">${f[li]}</span>
+        <span class="acc-icon gold-text text-2xl leading-none">+</span>
+      </button>
+      <div class="acc-panel px-6"><p class="pb-5 text-black/60 font-light leading-relaxed">${f[li+2]}</p></div>
+    </div>`).join('');
+
+  // Marquee (duplicated for seamless loop)
+  const mq = marqueeData.map(m=>`<span>${m[li]}</span>`).join('');
+  document.getElementById('marqueeTrack').innerHTML = mq + mq;
+}
+
+document.addEventListener('click', e=>{
+  const trigger = e.target.closest('.acc-trigger');
+  if(trigger){ trigger.closest('.acc-item').classList.toggle('open'); return; }
+  const dot = e.target.closest('[data-dot]');
+  if(dot){ testiIndex = +dot.dataset.dot; renderDynamic(currentLang); }
+});
+
+setInterval(()=>{
+  testiIndex = (testiIndex+1) % testimonialsData.length;
+  renderDynamic(currentLang);
+}, 5500);
+
+// ---------- Interactions ----------
+window.addEventListener('load', ()=>{
+  applyLang('en');
+  setTimeout(()=> document.getElementById('loader').classList.add('hide'), 700);
+});
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', ()=> nav.classList.toggle('scrolled', window.scrollY>20));
+
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', ()=>{
+  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('flex');
+});
+document.querySelectorAll('.mob-link').forEach(l=> l.addEventListener('click', ()=>{
+  mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex');
+}));
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in-view'); });
+},{threshold:0.15});
+document.querySelectorAll('.reveal, .stagger, .gold-thread').forEach(el=> io.observe(el));
+</script>
+</body>
+</html>
